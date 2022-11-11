@@ -1,0 +1,4 @@
+[core]
+    remote = medication_extractor
+['remote "medication_extractor"']
+    url = s3://jhu-datasets/medication_extractor/
