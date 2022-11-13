@@ -23,7 +23,7 @@ class Extractor(ABC):
 class MedicationExtractor(Extractor):
     """Extract medication names from text"""
 
-    nlp = ClassVar[spacy.language.Language] = spacy.load("en_core_med7_lg")
+    nlp: ClassVar[spacy.language.Language] = spacy.load("en_core_med7_lg")
 
     def extract(self, text: str) -> List[str]:
         """Extract medications from text
