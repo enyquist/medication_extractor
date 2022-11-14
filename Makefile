@@ -11,6 +11,7 @@ clean:  ## remove build artifacts
 	find . -name .pytest_cache | xargs rm -rf
 	find . -name *.egg-info | xargs rm -rf
 	find . -name setup-py-dev-links | xargs rm -rf
+	find docs -name generated | xargs rm -rf
 
 update: clean init
 
@@ -20,7 +21,20 @@ lint: ## Run linters
 test: lint ## Run tests
 	@./venv/bin/pytest -vv --durations=10 --cov-fail-under=1 --cov=rlner --cov-report html tests/
 
-docs: init ##
-	@rm -rf docs.log build/html/
-	@./venv/bin/sphinx-build -c docs.log docs build/html/
+rebuild-notebooks: ## Re-run notebooks for latest outputs
+	./venv/bin/python3 src/docs/run-notebooks.py; \
+	username=`whoami`; \
+	date; \
+	for f in $(shell find notebooks/ -type f -name "*.ipynb" | sort); do \
+		echo "Scrub username from '$${f}'"; \
+		sed -i"" "s/$${username}/jdoe/g" $${f}; \
+		date; \
+	done
 
+docs-build:  # Build docs
+	# run sphinx to build docs
+	./venv/bin/sphinx-build -c docs/ -w docs.log docs/ docs/_build/html/
+	mkdir -p docs/_build/html/_static/notebooks
+	cp notebooks/*.ipynb docs/_build/html/_static/notebooks
+
+docs: rebuild-notebooks docs-build ## Build documentation and API docs
