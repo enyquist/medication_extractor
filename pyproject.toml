@@ -18,6 +18,7 @@ exclude = '''
     | venv
     | env
     | docs
+    | app
 )/
 '''
 
