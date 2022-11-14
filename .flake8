@@ -12,6 +12,7 @@ ignore =
   D205  # 1 blank line required between summary line and description
   D212  # Multi-line docstring summary should start at the first line
   D411  # Missing blank line before section
+  D412  # No blank lines allowed between a section header and its content
   D415  # First line should end with a period, question mark, or exclamation point
   D417  # Missing argument descriptions in the docstring
 exclude = 
