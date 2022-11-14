@@ -38,3 +38,6 @@ docs-build:  # Build docs
 	cp notebooks/*.ipynb docs/_build/html/_static/notebooks
 
 docs: rebuild-notebooks docs-build ## Build documentation and API docs
+
+serve-docs: docs
+	firefox docs/_build/html/index.html
