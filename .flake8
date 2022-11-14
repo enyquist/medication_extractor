@@ -24,6 +24,7 @@ exclude =
   venv
   env
   docs
+  app
 per-file-ignores = 
   tests/*.py:D
 docstring-convention = google
