@@ -39,5 +39,5 @@ docs-build:  # Build docs
 
 docs: rebuild-notebooks docs-build ## Build documentation and API docs
 
-serve-docs: docs
+serve-docs: docs  # Serve docs in web-browser
 	firefox docs/_build/html/index.html
