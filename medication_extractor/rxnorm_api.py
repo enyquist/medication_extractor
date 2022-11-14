@@ -58,13 +58,13 @@ def format_query_spaces(query: str) -> str:
     return re.sub(REGEX_SPACE, "%", query)
 
 
-def json_encode_response(resp) -> Any:
+def json_encode_response(resp: requests.models.Response) -> Dict[str, Dict[str, str]]:
     """Convert requests response object into json instance
 
     Args:
-        resp (_type_): Response from Requests library
+        resp (requests.models.Response): Response from Requests library
 
     Returns:
-        Any: json instance
+        Dict[str, Dict[str, str]]: json instance
     """
     return json.loads(resp.content)
