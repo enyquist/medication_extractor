@@ -2,6 +2,7 @@ init: ## Initialize Project
 	@python3.10 -m venv venv
 	@./venv/bin/python3 -m pip install -U pip setuptools wheel
 	@./venv/bin/python3 -m pip install -r requirements/requirements.dev.txt
+	@./venv/bin/python3 -m pip install -e . --no-deps
 	@./venv/bin/python3 -m pre_commit install --install-hooks --overwrite
 
 clean:  ## remove build artifacts
