@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.shortcuts import render
 
 # custom libraries
-import medication_extractor.utils as utils
+from medication_extractor.utils import get_medication_mapping
 
 
 def home(request):
@@ -13,8 +13,8 @@ def home(request):
         form = DemoForm(request.POST)
         if form.is_valid():
             text = form.cleaned_data.get("text")
-            medication_mapping = utils.get_medication_mapping(text)
-            messages.success(request, "Extracting Medications...")
+            medication_mapping = get_medication_mapping(text)
+            messages.success(request, "Medications Extracted!")
             return render(request, "demo/demo.html", {"text": text, "medications": medication_mapping})
     else:
         form = DemoForm()
