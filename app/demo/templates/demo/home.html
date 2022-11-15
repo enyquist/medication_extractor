@@ -1,0 +1,51 @@
+{% extends "demo/base.html" %}
+
+{% block content %}
+    <h1>MedicationExtractor Demo</h1>
+    <p>This demo was prepared by Erik Nyquist (enyquis1) for use in EN.705.603.81.FA22.</p>
+
+    <p>This page provides a demonstration of MedicationExtractor to extract medications from text and map them to their RXNorm CUI codes.</p>
+
+    <h2>Example 1: Simple medication in simple text</h2>
+    <p>This sample demonstrates how MedicationExtractor will extract the name of a simple medication "Advil" and map it to it's RXNorm CUI code.</p>
+    <p>Sample Text: I took advil after I hurt my wrist</p>
+    <p>Output: {"Advil": "153010"} </p>
+
+    <h2>Example 2: Multiple medications in simple text</h2>
+    <p>This sample demonstrates how MedicationExtractor can extract the name of multiple medications and map them to their RXNorm CUI code.</p>
+    <p>Sample Text: I took advil after I hurt my wrist. I also took tylenol for a headache.</p>
+    <p>Output: {'Advil': '153010', 'Tylenol': '202433'} </p>
+
+    <h2>Example 3: No medication mentions</h2>
+    <p>This sample demonstrates how MedicationExtractor will not extract the name of medications if none are mentioned in the input.</p>
+    <p>Sample Text: I hurt my wrist but didn't take anything.</p>
+    <p>Output: {} </p>
+
+    <h2>Example 4: Complex text with multiple medications</h2>
+    <p>This sample demonstrates how MedicationExtractor can extract the name of multiple medications and map them to their RXNorm CUI code even in complex text.</p>
+    <p>Sample Text: Prior to surgery, the patient was prescribed midazolam. 
+        Patient prescribed percocet, 10mg/kg for three days to be taken twice daily orally.
+        Patient advised to take Aleve as needed.
+        Patient scheduled for follow up appointment in two weeks.</p>
+    <p>Output: {'midazolam': '6960', 'Percocet': '42844', 'Aleve': '215101'} </p>
+
+    <h4>Below users can input their own text and experiment with MedicationExtractor's capabilities.</h4>
+    
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">MedicationExtractor Demo</legend>
+                {{ form.as_p }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Extract</button>
+            </div>
+
+            {% if form.is_valid %}
+                <p> {{ form }} </p>
+            {% endif %}
+        </form>
+    </div>
+
+{% endblock content %}
