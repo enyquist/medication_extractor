@@ -20,9 +20,10 @@ def map_medications(medications: List[str]) -> Dict[str, str]:
 
     for medication in medications:
         results = RXNormAPI().get_approximate_match(medication)
-        candiates = results["approximateGroup"]["candidate"]
-        rxnorm_val = next((item for item in candiates if item["source"] == "RXNORM"), None)
-        mapping_dict[rxnorm_val["name"]] = rxnorm_val["rxcui"]
+        if results and "candidate" in results["approximateGroup"]:
+            candiates = results["approximateGroup"]["candidate"]
+            rxnorm_val = next((item for item in candiates if item["source"] == "RXNORM"), None)
+            mapping_dict[rxnorm_val["name"]] = rxnorm_val["rxcui"]
 
     return mapping_dict
 
