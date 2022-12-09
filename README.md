@@ -4,8 +4,8 @@ This repository was built by Erik Nyquist (enyquis1) for use in Johns Hopkins Un
 ## How to use:
 Clone this repo and, if using an environment that supports "Make", run `make init` to build the virtual environment. There are a few options to explore the functionality of this repo:
 * Run the jupyter notebook titled "notebooks/demo.ipynb". This will instansiate the NERD model to explore performance on unseen text.
-* In the terminal, run "make serve-django". This will run the Django application which can be viewed at localhost:8000/.
-* For anyone curious as the the code documentation, from the terminal run "make serve-docs". This will load the sphinx documentation from FireFox. Simply edit the Makefile to use the browser of your choice.
+* In the terminal, run `make serve-django`. This will run the Django application which can be viewed at localhost:8000/.
+* For anyone curious as the the code documentation, from the terminal run `make serve-docs`. This will load the sphinx documentation from FireFox. Simply edit the Makefile to use the browser of your choice.
 
 # System Paper
 This repository was built by Erik Nyquist (enyquis1) for use in Johns Hopkins University course EN.705.603.81.FA22. In what follows, the author outlines system design requirements in order to flesh out this pilot into a production ready system.
